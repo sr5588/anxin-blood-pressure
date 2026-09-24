@@ -1,0 +1,17 @@
+.gift {
+  font-size: 100rpx;
+  margin: 32rpx 0 10rpx;
+}
+.code-input {
+  height: 112rpx;
+  font-size: 38rpx;
+  letter-spacing: 2rpx;
+  padding: 10rpx 8rpx;
+  background: #f6f8fb;
+  border-radius: 20rpx;
+  text-align: center;
+}
+.theme-dark .code-input {
+  background: #26364b;
+  color: var(--text);
+}

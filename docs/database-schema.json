@@ -1,0 +1,15 @@
+{
+  "clientDatabaseRule": {"read":false,"write":false},
+  "clientStorageRule": {"read":false,"write":false},
+  "collections": {
+    "users":{"id":"sha256(OPENID)","indexes":[]},
+    "sessions":{"id":"sha256(OPENID:sessionId)","indexes":[["userId","_id"],["userId","measuredAt"]]},
+    "entitlement_grants":{"id":"deterministic grantId","indexes":[["userId","_id"],["userId","status"]]},
+    "products":{"id":"productId","indexes":[["isActive","_id"]]},
+    "orders":{"id":"sha256(OPENID:order:requestId)","indexes":[["userId","_id"]]},
+    "redemption_codes":{"id":"sha256(normalizedCode)","indexes":[["campaignId","_id"]]},
+    "redemption_records":{"id":"sha256(OPENID:codeId)","indexes":[["userId","_id"],["codeId","_id"]]},
+    "rate_limits":{"id":"sha256(OPENID:redeem-rate)","indexes":[]},
+    "export_files":{"id":"sha256(fileID)","indexes":[["userId","_id"],["expiresAt","_id"]]}
+  }
+}

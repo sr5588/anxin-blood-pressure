@@ -1,0 +1,55 @@
+<view class="page theme-{{theme}}">
+  <text class="eyebrow">把关心，留在每一天</text>
+  <view class="title">记录日历</view>
+  <view wx:if="{{offline}}" class="notice">离线查看本机记录</view>
+  <view class="card">
+    <view class="row month">
+      <button class="ghost month-arrow" data-delta="-1" bindtap="changeMonth" aria-label="上个月">
+        ‹
+      </button>
+      <text>{{month}}</text>
+      <button class="ghost month-arrow" data-delta="1" bindtap="changeMonth" aria-label="下个月">
+        ›
+      </button>
+    </view>
+    <view class="calendar-grid">
+      <text wx:for="{{weekdays}}" wx:key="*this" class="weekday">{{item}}</text>
+      <view wx:for="{{cells}}" wx:key="key" class="calendar-cell">
+        <button
+          wx:if="{{!item.blank}}"
+          class="date-cell {{item.selected ? 'selected' : ''}} {{item.future ? 'future' : ''}}"
+          disabled="{{item.future}}"
+          data-key="{{item.key}}"
+          bindtap="select"
+        >
+          <text>{{item.day}}</text>
+          <text class="day-status">{{item.locked ? '⌑' : item.done ? '●' : '·'}}</text>
+        </button>
+      </view>
+    </view>
+    <view class="small muted">● 已记录　⌑ 长期回顾　所有原始数据免费保留</view>
+  </view>
+  <view class="section-title">{{selected}} 的记录</view>
+  <view wx:if="{{locked}}" class="card empty">
+    <view class="empty-icon">🔒</view>
+    <view>你的数据一直都在</view>
+    <view class="small muted">这个日期属于长期回顾范围</view>
+    <view class="spacer"></view>
+    <button class="secondary" bindtap="access">查看解锁方式与免费导出</button>
+  </view>
+  <view wx:elif="{{!rows.length}}" class="card empty">这一天还没有记录</view>
+  <view wx:for="{{rows}}" wx:key="sessionId" class="card">
+    <view class="row">
+      <text>{{item.label}}</text>
+      <text class="small muted">{{item.readings.length}}次读数</text>
+    </view>
+    <view class="calendar-bp">
+      <text class="coral">{{item.average.systolic}}</text>
+      /
+      <text class="blue">{{item.average.diastolic}}</text>
+    </view>
+    <view class="small muted">♡ {{item.average.pulse}} 次/分</view>
+  </view>
+  <button wx:if="{{rows.length}}" class="ghost" bindtap="details">查看原始读数 ›</button>
+  <record-button />
+</view>

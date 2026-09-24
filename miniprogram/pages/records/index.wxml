@@ -1,0 +1,30 @@
+<view class="page no-fab theme-{{theme}}">
+  <text class="eyebrow">你的原始记录</text>
+  <view class="title">每一次，都保留</view>
+  <view wx:if="{{offline}}" class="notice">当前显示本机可访问的记录</view>
+  <view wx:if="{{!rows.length}}" class="card empty">这个范围内还没有记录</view>
+  <view wx:for="{{rows}}" wx:key="sessionId" class="card">
+    <view class="row">
+      <text>{{item.label}}</text>
+      <text class="badge">{{item.status === 'complete' ? '已复测' : '未完成复测'}}</text>
+    </view>
+    <view class="raw-average">
+      {{item.average.systolic}} / {{item.average.diastolic}}
+      <text class="small muted">平均</text>
+    </view>
+    <view
+      wx:for="{{item.raw}}"
+      wx:for-item="reading"
+      wx:for-index="n"
+      wx:key="readingId"
+      class="raw-line"
+    >
+      <view class="small muted">第{{n+1}}次 · {{reading.time}}</view>
+      <view>
+        {{reading.systolic}} / {{reading.diastolic}}
+        <text class="small muted">♡ {{reading.pulse}}</text>
+      </view>
+    </view>
+    <button class="ghost small" bindtap="remove" data-id="{{item.sessionId}}">删除这组记录</button>
+  </view>
+</view>

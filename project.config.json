@@ -1,0 +1,10 @@
+{
+  "description": "安压日记 · 家庭血压记录",
+  "miniprogramRoot": "miniprogram/",
+  "cloudfunctionRoot": "cloudfunctions/",
+  "compileType": "miniprogram",
+  "appid": "wx0785dc63582d4a3e",
+  "projectname": "安压日记",
+  "setting": { "es6": true, "minified": true, "enhance": true, "urlCheck": true },
+  "packOptions": { "ignore": [{ "type": "suffix", "value": ".ts" }] }
+}

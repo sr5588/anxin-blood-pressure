@@ -1,0 +1,26 @@
+{
+  "name": "anxin-blood-pressure",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.server.json",
+    "test": "node scripts/build.mjs && tsx --test tests/*.test.ts && node --test tests/client.test.cjs",
+    "check": "pnpm test && python3 scripts/check-templates.py",
+    "admin": "tsx scripts/admin.ts",
+    "smoke": "node scripts/smoke.cjs",
+    "e2e": "node scripts/e2e.cjs",
+    "theme-check": "node scripts/theme-check.cjs"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "miniprogram-api-typings": "^4.0.0",
+    "miniprogram-automator": "^0.12.1",
+    "prettier": "^3.9.8",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0"
+  },
+  "dependencies": {
+    "wx-server-sdk": "^3.0.0"
+  }
+}

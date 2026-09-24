@@ -1,0 +1,315 @@
+.brand-heart {
+  width: 68rpx;
+  height: 68rpx;
+  background: #eaf2ff;
+  color: #4889e7;
+  border-radius: 24rpx;
+  text-align: center;
+  font-size: 48rpx;
+}
+.title {
+  font-size: 48rpx;
+  margin-top: 22rpx;
+}
+.demo {
+  font-size: 25rpx;
+  color: #75869b;
+  margin-top: 20rpx;
+}
+.hero {
+  margin-top: 34rpx;
+  padding: 36rpx;
+  background: linear-gradient(145deg, #fff 65%, #f1f7ff);
+}
+.hero-label {
+  font-size: 34rpx;
+  font-weight: 550;
+}
+.pressure {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 36rpx 0 0;
+  font-size: 120rpx;
+  line-height: 1.15;
+}
+.slash {
+  font-size: 74rpx;
+  font-weight: 300;
+  color: #b5c2d0;
+}
+.blank {
+  color: #b7c5d6;
+}
+.legend {
+  font-size: 28rpx;
+  color: #76879b;
+  margin-top: 14rpx;
+}
+.pulse {
+  font-size: 42rpx;
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+  white-space: nowrap;
+}
+.period {
+  margin: 0;
+  padding: 26rpx;
+}
+.morning {
+  background: #fff7e9;
+}
+.evening {
+  background: #edf3fd;
+}
+.period-bp {
+  font-size: 40rpx;
+  font-weight: 600;
+  margin: 18rpx 0 10rpx;
+  white-space: nowrap;
+}
+.period .small {
+  font-size: 26rpx;
+}
+.week {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+.day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 26rpx;
+  color: #748297;
+}
+.dot {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  background: #f0f3f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #a9b6c4;
+  font-size: 32rpx;
+}
+.dot.done {
+  background: #dff3ea;
+  color: #45967f;
+}
+.section-heading {
+  font-weight: 600;
+}
+.welcome {
+  position: relative;
+  padding: 4rpx 0 10rpx;
+  min-height: 238rpx;
+}
+.date-label {
+  color: var(--muted);
+  font-size: 30rpx;
+}
+.demo-pill {
+  font-size: 22rpx;
+  color: var(--muted);
+  background: var(--surface);
+  padding: 4rpx 14rpx;
+  border-radius: 20rpx;
+}
+.welcome-title {
+  font-size: 52rpx;
+  font-weight: 650;
+  letter-spacing: -1rpx;
+  margin: 20rpx 0 10rpx;
+  position: relative;
+  z-index: 1;
+}
+.daily-quote {
+  font-size: 31rpx;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 540rpx;
+  position: relative;
+  z-index: 1;
+}
+.greeting-art {
+  position: absolute;
+  right: 0;
+  top: 68rpx;
+  width: 160rpx;
+  height: 135rpx;
+  pointer-events: none;
+  opacity: 0.8;
+}
+.sun {
+  position: absolute;
+  right: 14rpx;
+  top: 6rpx;
+  width: 92rpx;
+  height: 92rpx;
+  border-radius: 50%;
+  background: linear-gradient(160deg, #ffe6a0, #ffc475);
+  box-shadow: 0 0 30rpx #ffcc7440;
+}
+.cloud {
+  position: absolute;
+  background: #ffffffc9;
+  border-radius: 50rpx;
+  right: 0;
+  top: 70rpx;
+  width: 110rpx;
+  height: 29rpx;
+}
+.cloud-two {
+  width: 65rpx;
+  top: 106rpx;
+  right: 56rpx;
+  opacity: 0.55;
+}
+.leaf {
+  position: absolute;
+  width: 35rpx;
+  height: 19rpx;
+  background: #e5af65;
+  border-radius: 4rpx 30rpx;
+  transform: rotate(-25deg);
+  top: 110rpx;
+  right: 8rpx;
+}
+.leaf-two {
+  top: 124rpx;
+  right: 43rpx;
+  width: 23rpx;
+  height: 12rpx;
+  transform: rotate(24deg);
+  opacity: 0.6;
+}
+.spring .sun {
+  background: linear-gradient(160deg, #ffe4ae, #fbc987);
+}
+.spring .leaf {
+  background: #9acbab;
+}
+.summer .leaf {
+  background: #7dbaa0;
+}
+.winter .sun {
+  background: linear-gradient(160deg, #d4e9ff, #9cccf6);
+}
+.winter .leaf {
+  background: #bfd5eb;
+}
+.sync-hint {
+  font-size: 28rpx;
+  color: var(--muted);
+  min-height: 60rpx;
+  padding: 12rpx 0;
+}
+.hero {
+  margin-top: 8rpx;
+  background: var(--surface);
+}
+.pressure {
+  margin-top: 26rpx;
+}
+.legend {
+  color: var(--muted);
+}
+.periods {
+  margin-top: 24rpx;
+}
+.period-icon {
+  font-size: 48rpx;
+  color: #dca753;
+}
+.evening .period-icon {
+  color: #8b9ed8;
+}
+.period-bp {
+  font-size: 40rpx;
+  margin: 12rpx 0 4rpx;
+}
+.compact-link {
+  background: transparent;
+  font-size: 28rpx;
+  color: var(--blue);
+  min-height: 72rpx;
+  padding: 8rpx 0;
+  font-weight: 400;
+}
+.week-card {
+  padding-top: 20rpx;
+}
+.week {
+  margin-top: 14rpx;
+}
+.theme-dark .hero {
+  background: linear-gradient(145deg, #1d2b3d, #1b2838);
+}
+.theme-dark .morning {
+  background: #342f29;
+}
+.theme-dark .evening {
+  background: #25304a;
+}
+.theme-dark .dot {
+  background: #28394e;
+  color: #8aa2bd;
+}
+.theme-dark .dot.done {
+  background: var(--mint);
+  color: var(--mint-text);
+}
+.theme-dark .day {
+  color: var(--muted);
+}
+.theme-dark .cloud {
+  background: #b8c9df;
+  opacity: 0.35;
+}
+.theme-dark .sun {
+  opacity: 0.85;
+}
+.theme-dark .period-icon {
+  color: #edc587;
+}
+.theme-dark .evening .period-icon {
+  color: #c2c7f8;
+}
+.welcome {
+  min-height: 174rpx;
+}
+.welcome-title {
+  font-size: 48rpx;
+  margin-top: 16rpx;
+}
+.hero {
+  padding: 28rpx;
+}
+.hero .pressure {
+  margin-top: 18rpx;
+  font-size: 116rpx;
+}
+.hero .divider {
+  margin: 18rpx 0;
+}
+.period {
+  padding: 22rpx;
+}
+.week-card {
+  padding: 18rpx 26rpx 24rpx;
+  margin-top: 16rpx;
+}
+.week {
+  margin-top: 10rpx;
+}
+.dot {
+  width: 52rpx;
+  height: 52rpx;
+}
+.day {
+  gap: 8rpx;
+}

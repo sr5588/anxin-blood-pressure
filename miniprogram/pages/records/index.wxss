@@ -1,0 +1,20 @@
+.raw-average {
+  font-size: 58rpx;
+  font-weight: 600;
+  color: #3e79bd;
+  margin: 22rpx 0;
+}
+.raw-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-top: 1rpx solid #edf1f5;
+  font-size: 36rpx;
+}
+.theme-dark .raw-average {
+  color: var(--blue);
+}
+.theme-dark .raw-line {
+  border-color: var(--divider);
+}

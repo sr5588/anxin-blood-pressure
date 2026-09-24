@@ -1,0 +1,6 @@
+<canvas
+  type="2d"
+  id="chart"
+  class="chart"
+  aria-label="血压变化曲线，橙色为收缩压，蓝色为舒张压。下方提供数值记录。"
+></canvas>

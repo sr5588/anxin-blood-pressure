@@ -1,0 +1,7 @@
+node_modules
+.build
+artifacts
+cloudfunctions
+miniprogram/shared
+shared/pdf-font.ts
+miniprogram/**/*.js

@@ -1,0 +1,99 @@
+<view class="page theme-{{theme}}">
+  <text class="eyebrow">安压日记</text>
+  <view class="title">我的安心小站</view>
+  <view class="card identity">
+    <view class="avatar">♡</view>
+    <view>
+      <view class="identity-name">好好记录，好好生活</view>
+      <text class="small muted">{{count}}组本机记录 · 陪伴每一天</text>
+    </view>
+  </view>
+  <view class="card">
+    <button class="link-row" bindtap="access">
+      <view>
+        <view>✦ 长期血压回顾</view>
+        <text class="small muted">当前：{{state}}</text>
+      </view>
+      <text>›</text>
+    </button>
+    <button class="link-row" bindtap="redeem">
+      <text>🎁 兑换码</text>
+      <text>›</text>
+    </button>
+  </view>
+  <view class="appearance">
+    <button
+      class="theme-option {{theme === 'light' ? 'active' : ''}}"
+      data-theme="light"
+      bindtap="changeTheme"
+    >
+      <text>☀</text>
+      浅色
+    </button>
+    <button
+      class="theme-option {{theme === 'dark' ? 'active' : ''}}"
+      data-theme="dark"
+      bindtap="changeTheme"
+    >
+      <text>☾</text>
+      深色
+    </button>
+  </view>
+  <view class="section-title">数据，始终属于你</view>
+  <view class="card">
+    <view class="row">
+      <text>☁ {{mock ? '本机模拟备份' : '云端备份'}}</text>
+      <text class="tag">永久免费</text>
+    </view>
+    <view class="small muted sync-status">
+      {{pending ? pending+'组等待备份' : '最近备份：'+lastSync}}
+    </view>
+    <view wx:if="{{mock}}" class="notice">尚未连接CloudBase，本机模拟备份不能用于换机恢复。</view>
+    <view class="grid2">
+      <button class="secondary" bindtap="backup" disabled="{{busy}}">立即备份</button>
+      <button class="secondary" bindtap="restore" disabled="{{busy}}">恢复记录</button>
+    </view>
+  </view>
+  <view class="card">
+    <button class="link-row" bindtap="export" data-kind="json" disabled="{{busy}}">
+      <text>↓ 全部原始数据 · JSON</text>
+      <text class="badge">免费</text>
+    </button>
+    <button class="link-row" bindtap="export" data-kind="csv" disabled="{{busy}}">
+      <text>↓ 全部原始数据 · CSV</text>
+      <text class="badge">免费</text>
+    </button>
+    <button class="link-row" bindtap="report" data-long="{{false}}" disabled="{{busy}}">
+      <text>▤ 最近7日医生报告</text>
+      <text class="badge">免费</text>
+    </button>
+    <button
+      wx:if="{{premium}}"
+      class="link-row"
+      bindtap="report"
+      data-long="{{true}}"
+      disabled="{{busy}}"
+    >
+      <text>▤ 长期PDF报告</text>
+      <text>›</text>
+    </button>
+  </view>
+  <view class="card">
+    <button class="link-row" bindtap="privacy">
+      <text>ⓘ 隐私与数据说明</text>
+      <text>›</text>
+    </button>
+    <button class="link-row delete" bindtap="removeAll" disabled="{{busy}}">
+      <text>{{deleting ? '继续完成全部健康数据删除' : '删除全部健康记录'}}</text>
+      <text>›</text>
+    </button>
+  </view>
+  <view class="footer">
+    永久免费记录与保存，不限制记录次数。
+    <br />
+    医疗安全提醒不会受到付费状态影响。
+    <br />
+    版本 0.1.0 · {{mock ? '本机开发演示' : 'CloudBase'}}
+  </view>
+  <record-button />
+</view>

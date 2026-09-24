@@ -1,0 +1,38 @@
+.status {
+  margin: 8rpx 0;
+  font-size: 38rpx;
+}
+.access-symbol {
+  font-size: 84rpx;
+  color: #76a6df;
+}
+.price {
+  font-size: 76rpx;
+  font-weight: 650;
+  color: #2c6dc0;
+  margin: 24rpx 0 4rpx;
+  letter-spacing: -2rpx;
+}
+.benefit {
+  font-size: 32rpx;
+  margin: 22rpx 0;
+  color: #536b83;
+}
+.trial {
+  background: #edf6f2;
+}
+.product {
+  border: 2rpx solid #edf2f8;
+}
+.theme-dark .trial {
+  background: #223e38;
+}
+.theme-dark .product {
+  border-color: var(--divider);
+}
+.theme-dark .price {
+  color: var(--blue);
+}
+.theme-dark .benefit {
+  color: var(--muted);
+}

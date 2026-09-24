@@ -1,0 +1,231 @@
+<view class="page no-fab theme-{{theme}}">
+  <block wx:if="{{stage === 'prepare'}}">
+    <text class="eyebrow">给自己一点安静的时间</text>
+    <view class="title">坐好，再开始</view>
+    <view class="subtitle">建议安静休息至少5分钟</view>
+    <view class="preparation-art">
+      <view class="prep-heart">♡</view>
+      <view class="prep-circle"></view>
+      <text>慢一点，也很好</text>
+    </view>
+    <view class="grid2">
+      <view class="prep-item">
+        🪑
+        <text>坐好，背靠椅背</text>
+      </view>
+      <view class="prep-item">
+        🦶
+        <text>双脚自然平放</text>
+      </view>
+      <view class="prep-item">
+        🫀
+        <text>手臂与心脏同高</text>
+      </view>
+      <view class="prep-item">
+        🤫
+        <text>保持安静不说话</text>
+      </view>
+    </view>
+    <view class="stack">
+      <button wx:if="{{!prepEnd}}" class="secondary" bindtap="startPrep">◷ 开始5分钟准备</button>
+      <view wx:else class="notice">
+        {{seconds > 0 ? '正在休息，还剩 '+seconds+' 秒' : '准备时间已到，可以开始测量'}}
+      </view>
+      <button class="primary" bindtap="ready">我已经准备好了 ›</button>
+    </view>
+  </block>
+  <block wx:if="{{stage === 'input'}}">
+    <view class="row">
+      <text class="eyebrow">第 {{step}} 次测量</text>
+      <button
+        class="sound-toggle"
+        bindtap="toggleSound"
+        aria-label="{{soundOn ? '关闭滚轮音效' : '开启滚轮音效'}}"
+      >
+        {{soundOn ? '♪' : '♩'}}
+      </button>
+    </view>
+    <view class="title">轻轻一转，安心记下</view>
+    <view class="subtitle">对照血压计，滚动三个数字</view>
+    <view wx:if="{{step === 1}}" class="prep-inline">🪑 坐稳 · 静息5分钟 · 手臂与心脏同高</view>
+    <view class="picker-card">
+      <view class="picker-labels">
+        <view class="coral">
+          收缩压
+          <text>mmHg</text>
+        </view>
+        <view class="blue">
+          舒张压
+          <text>mmHg</text>
+        </view>
+        <view>
+          脉搏
+          <text>次 / 分</text>
+        </view>
+      </view>
+      <picker-view
+        class="bp-picker"
+        value="{{values}}"
+        indicator-class="picker-indicator"
+        mask-class="picker-mask"
+        bindchange="changed"
+        bindpickstart="changing"
+        bindpickend="scrollEnd"
+      >
+        <picker-view-column>
+          <view
+            wx:for="{{systolics}}"
+            wx:key="*this"
+            class="picker-item {{index === values[0] ? 'chosen coral' : index === values[0]-1 || index === values[0]+1 ? 'near' : 'far'}}"
+          >
+            {{item}}
+          </view>
+        </picker-view-column>
+        <picker-view-column>
+          <view
+            wx:for="{{diastolics}}"
+            wx:key="*this"
+            class="picker-item {{index === values[1] ? 'chosen blue' : index === values[1]-1 || index === values[1]+1 ? 'near' : 'far'}}"
+          >
+            {{item}}
+          </view>
+        </picker-view-column>
+        <picker-view-column>
+          <view
+            wx:for="{{pulses}}"
+            wx:key="*this"
+            class="picker-item {{index === values[2] ? 'chosen' : index === values[2]-1 || index === values[2]+1 ? 'near' : 'far'}}"
+          >
+            {{item}}
+          </view>
+        </picker-view-column>
+      </picker-view>
+    </view>
+    <button
+      class="primary save-reading"
+      disabled="{{scrolling || saving}}"
+      loading="{{saving}}"
+      bindtap="confirmAndSave"
+    >
+      {{confirmed ? '保存' : '确认并保存'}}第{{step === 1 ? '一' : step === 2 ? '二' : '三'}}次
+    </button>
+    <button class="details-toggle" bindtap="toggleDetails">
+      {{date}}　{{time}}
+      <text>{{showDetails ? '收起 ⌃' : '补充信息 ⌄'}}</text>
+    </button>
+    <view wx:if="{{showDetails}}" class="card details-card">
+      <view class="row">
+        <picker mode="date" value="{{date}}" end="{{maxDate}}" bindchange="dateChange">
+          <view class="date-control">▦ {{date}}</view>
+        </picker>
+        <picker mode="time" value="{{time}}" bindchange="timeChange">
+          <view class="date-control">◷ {{time}}</view>
+        </picker>
+      </view>
+      <view class="pills">
+        <button
+          wx:for="{{armOptions}}"
+          wx:key="key"
+          class="pill {{context.arm === item.key ? 'selected' : ''}}"
+          data-field="arm"
+          data-value="{{item.key}}"
+          bindtap="choose"
+        >
+          {{item.label}}
+        </button>
+      </view>
+      <view class="pills">
+        <button
+          wx:for="{{postureOptions}}"
+          wx:key="key"
+          class="pill {{context.posture === item.key ? 'selected' : ''}}"
+          data-field="posture"
+          data-value="{{item.key}}"
+          bindtap="choose"
+        >
+          {{item.label}}
+        </button>
+      </view>
+      <view class="pills">
+        <button
+          wx:for="{{medOptions}}"
+          wx:key="key"
+          class="pill {{context.medication === item.key ? 'selected' : ''}}"
+          data-field="medication"
+          data-value="{{item.key}}"
+          bindtap="choose"
+        >
+          {{item.label}}
+        </button>
+      </view>
+      <view class="divider"></view>
+      <text>身体感觉</text>
+      <button class="pill {{context.symptoms.length === 0 ? 'selected' : ''}}" bindtap="none">
+        😊 无不适 / 未填写
+      </button>
+      <view class="symptoms">
+        <button
+          wx:for="{{symptomOptions}}"
+          wx:key="key"
+          class="pill {{item.selected ? 'selected' : ''}}"
+          data-key="{{item.key}}"
+          bindtap="symptom"
+        >
+          {{item.label}}
+        </button>
+      </view>
+      <view wx:if="{{context.symptoms.length}}" class="note">
+        已选择 {{context.symptoms.length}} 项不适，再点同一项可取消
+      </view>
+      <button class="pill {{context.irregularHeartbeat ? 'selected' : ''}}" bindtap="irregular">
+        {{context.irregularHeartbeat ? '☑' : '☐'}} 血压计提示心律不齐
+      </button>
+    </view>
+  </block>
+  <block wx:if="{{stage === 'wait'}}">
+    <text class="eyebrow">✓ 第{{readings.length}}次已记录</text>
+    <view class="title">{{third ? '两次结果差异较大' : '稍等一会儿，再测一次'}}</view>
+    <view class="subtitle">{{third ? '建议再测一次，让记录更完整' : '保持坐姿，自然呼吸'}}</view>
+    <view class="countdown">
+      <view class="count-inner">
+        <text class="count-num">{{remaining}}</text>
+        <text class="muted">{{remaining ? '秒后建议复测' : '可以开始复测了'}}</text>
+      </view>
+    </view>
+    <view
+      wx:if="{{safety && safety.level !== 'normal'}}"
+      class="{{safety.level === 'urgent' ? 'urgent' : 'note'}}"
+    >
+      {{safety.text}}
+    </view>
+    <button class="primary" disabled="{{!canContinue}}" bindtap="next">
+      {{canContinue ? '开始第'+(readings.length+1)+'次' : '至少间隔30秒'}}
+    </button>
+    <view class="small muted wait-tip">建议间隔30～60秒</view>
+    <button class="ghost" bindtap="finishEarly">先保留，稍后再测</button>
+  </block>
+  <block wx:if="{{stage === 'done'}}">
+    <view class="success-mark">✓</view>
+    <view class="title centered">记好了，安心一点</view>
+    <view class="card centered">
+      <view class="muted">本次平均</view>
+      <view class="result-num">
+        <text class="coral">{{result.systolic}}</text>
+        <text class="slash">/</text>
+        <text class="blue">{{result.diastolic}}</text>
+      </view>
+      <text class="muted">mmHg</text>
+      <view class="result-pulse">♡ {{result.pulse}} 次 / 分</view>
+      <view class="tag">{{readings.length}}次原始读数，全部保留</view>
+    </view>
+    <view
+      wx:if="{{safety && safety.level !== 'normal'}}"
+      class="{{safety.level === 'urgent' ? 'urgent' : 'note'}}"
+    >
+      {{safety.text}}
+    </view>
+    <view class="small muted centered">{{synced ? '备份已完成' : '已保存本机'}}</view>
+    <view class="spacer"></view>
+    <button class="primary" bindtap="home">完成</button>
+  </block>
+</view>

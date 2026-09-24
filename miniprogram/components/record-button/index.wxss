@@ -1,0 +1,28 @@
+.dock {
+  position: fixed;
+  bottom: 28rpx;
+  left: 68rpx;
+  right: 68rpx;
+  z-index: 10;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.record {
+  background: #277dee;
+  color: white;
+  font-size: 40rpx;
+  font-weight: 600;
+  height: 116rpx;
+  line-height: 116rpx;
+  border-radius: 60rpx;
+  box-shadow: 0 12rpx 32rpx #277dee30;
+}
+.record::after {
+  border: 0;
+}
+.dock {
+  bottom: 20rpx;
+  padding-bottom: 0;
+}
+.record {
+  background: var(--primary, #277dee);
+}

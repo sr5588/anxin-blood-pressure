@@ -1,0 +1,30 @@
+<view class="page no-fab theme-{{theme}}">
+  <view class="gift">🎁</view>
+  <view class="title">收下这份安心</view>
+  <view class="subtitle">免费赠送、内测或活动授权兑换</view>
+  <view class="card">
+    <input
+      class="code-input"
+      value="{{code}}"
+      bindinput="input"
+      placeholder="粘贴或填写兑换码"
+      maxlength="64"
+      aria-label="兑换码"
+    />
+    <view class="spacer"></view>
+    <view class="grid2">
+      <button class="secondary" bindtap="paste">▣ 粘贴</button>
+      <button class="secondary" bindtap="scan">⊞ 扫一扫</button>
+    </view>
+  </view>
+  <button class="primary" bindtap="redeem" disabled="{{!code || busy}}" loading="{{busy}}">
+    确认兑换
+  </button>
+  <view class="note">点击粘贴只填入兑换码，确认兑换后提交。</view>
+  <view wx:if="{{mock}}" class="notice">
+    开发测试码：AXBP-7DAY-TEST
+    <br />
+    仅在本机演示模式有效，赠送7天体验。
+  </view>
+  <view class="footer">兑换码仅用于免费授权或平台允许的活动场景，不用于站外售卖付费功能。</view>
+</view>

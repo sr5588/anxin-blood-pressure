@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/today/index",
+    "pages/trends/index",
+    "pages/calendar/index",
+    "pages/profile/index",
+    "pages/measure/index",
+    "pages/access/index",
+    "pages/redeem/index",
+    "pages/records/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "安压日记",
+    "navigationBarBackgroundColor": "@navBg",
+    "navigationBarTextStyle": "@navText",
+    "backgroundColor": "@bg"
+  },
+  "tabBar": {
+    "color": "@muted",
+    "selectedColor": "@blue",
+    "backgroundColor": "@surface",
+    "borderStyle": "@border",
+    "list": [
+      {
+        "pagePath": "pages/today/index",
+        "text": "今天",
+        "iconPath": "assets/today.png",
+        "selectedIconPath": "assets/today-active.png"
+      },
+      {
+        "pagePath": "pages/trends/index",
+        "text": "趋势",
+        "iconPath": "assets/trends.png",
+        "selectedIconPath": "assets/trends-active.png"
+      },
+      {
+        "pagePath": "pages/calendar/index",
+        "text": "日历",
+        "iconPath": "assets/calendar.png",
+        "selectedIconPath": "assets/calendar-active.png"
+      },
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "assets/profile.png",
+        "selectedIconPath": "assets/profile-active.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "record-button": "/components/record-button/index"
+  },
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "darkmode": true,
+  "themeLocation": "theme.json"
+}

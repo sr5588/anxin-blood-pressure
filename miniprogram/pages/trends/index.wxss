@@ -1,0 +1,71 @@
+.chart-legend {
+  display: flex;
+  gap: 30rpx;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+}
+.trend-average {
+  font-size: 68rpx;
+  font-weight: 600;
+  margin: 16rpx 0;
+  color: #a8b5c3;
+}
+.record-row {
+  padding: 24rpx 28rpx;
+  margin: 16rpx 0;
+}
+.record-number {
+  font-size: 46rpx;
+  font-weight: 600;
+}
+.locked {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 70rpx;
+}
+.lock-icon {
+  font-size: 68rpx;
+  position: relative;
+}
+.reassure {
+  font-size: 36rpx;
+  margin: 26rpx 0 8rpx;
+  color: #446e9c;
+}
+.locked button {
+  margin-top: 26rpx;
+  position: relative;
+}
+.abstract {
+  height: 180rpx;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.4;
+  filter: blur(12rpx);
+}
+.abstract-line {
+  height: 60rpx;
+  width: 130%;
+  transform: rotate(-12deg);
+  background: #d8e8fd;
+  position: absolute;
+  left: -20%;
+  border-radius: 50%;
+}
+.one {
+  top: 30rpx;
+}
+.two {
+  top: 130rpx;
+  background: #f5e1d7;
+  transform: rotate(10deg);
+}
+.theme-dark .reassure {
+  color: var(--blue);
+}
+.theme-dark .abstract {
+  opacity: 0.14;
+}

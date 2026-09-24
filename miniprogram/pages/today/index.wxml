@@ -1,0 +1,86 @@
+<view class="page theme-{{theme}}">
+  <view class="welcome {{season}}">
+    <view class="row">
+      <text class="date-label">{{dateLabel}} · {{greeting}}</text>
+      <text wx:if="{{mock}}" class="demo-pill">本机演示</text>
+    </view>
+    <view class="greeting-art">
+      <view class="sun"></view>
+      <view class="cloud cloud-one"></view>
+      <view class="cloud cloud-two"></view>
+      <view class="leaf leaf-one"></view>
+      <view class="leaf leaf-two"></view>
+    </view>
+    <view class="welcome-title">今天，也要好好的</view>
+    <view class="daily-quote">{{quote}}</view>
+  </view>
+  <view wx:if="{{pending}}" class="sync-hint" bindtap="retry">
+    ☁ {{pending}}组待备份 · 点此重试
+  </view>
+  <view class="card hero">
+    <view class="row">
+      <text class="hero-label">♡ 最近一次</text>
+      <text class="small muted">{{latest ? latest.date+' '+latest.time : '还没有记录'}}</text>
+    </view>
+    <view wx:if="{{latest}}" class="pressure">
+      <text class="num coral">{{latest.systolic}}</text>
+      <text class="slash">/</text>
+      <text class="num blue">{{latest.diastolic}}</text>
+    </view>
+    <view wx:else class="pressure blank">
+      <text>—</text>
+      <text class="slash">/</text>
+      <text>—</text>
+    </view>
+    <view class="row legend">
+      <text>收缩压 / 舒张压</text>
+      <text>mmHg</text>
+    </view>
+    <view class="divider"></view>
+    <view class="row">
+      <view class="pulse"><text>♡ {{latest ? latest.pulse : '—'}}</text><text class="small muted">次 / 分</text></view>
+      <text class="small muted">{{latest ? latest.count+'次平均' : '从今天开始'}}</text>
+    </view>
+  </view>
+  <view
+    wx:if="{{safety && safety.level !== 'normal'}}"
+    class="{{safety.level === 'urgent' ? 'urgent' : 'notice'}}"
+  >
+    ⚠ {{safety.text}}
+  </view>
+  <view class="grid2 periods">
+    <view class="card period morning">
+      <view class="row">
+        <text>早晨</text>
+        <text class="period-icon">☀</text>
+      </view>
+      <view class="period-bp">
+        {{morning ? morning.systolic+' / '+morning.diastolic : '尚未记录'}}
+      </view>
+      <text wx:if="{{morning}}" class="small muted">{{morning.time}}</text>
+    </view>
+    <view class="card period evening">
+      <view class="row">
+        <text>晚间</text>
+        <text class="period-icon">☾</text>
+      </view>
+      <view class="period-bp">
+        {{evening ? evening.systolic+' / '+evening.diastolic : '尚未记录'}}
+      </view>
+      <text wx:if="{{evening}}" class="small muted">{{evening.time}}</text>
+    </view>
+  </view>
+  <view class="card week-card">
+    <view class="row">
+      <text class="section-heading">最近7天</text>
+      <button class="compact-link" bindtap="records">全部记录 ›</button>
+    </view>
+    <view class="week">
+      <view wx:for="{{days}}" wx:key="label" class="day">
+        <view class="dot {{item.done ? 'done' : ''}}">{{item.done ? '✓' : '·'}}</view>
+        <text>{{item.label}}</text>
+      </view>
+    </view>
+  </view>
+  <record-button id="record-button" />
+</view>

@@ -1,0 +1,59 @@
+.identity {
+  display: flex;
+  gap: 24rpx;
+  align-items: center;
+}
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 32rpx;
+  background: #e8f2fe;
+  color: #679ada;
+  font-size: 72rpx;
+  text-align: center;
+  line-height: 100rpx;
+  flex-shrink: 0;
+}
+.identity-name {
+  font-size: 36rpx;
+  font-weight: 600;
+  margin-bottom: 6rpx;
+}
+.sync-status {
+  margin: 16rpx 0 26rpx;
+}
+.delete {
+  color: #a96449;
+  font-size: 32rpx;
+}
+.appearance {
+  display: flex;
+  padding: 8rpx;
+  background: var(--surface);
+  border-radius: 28rpx;
+  gap: 10rpx;
+  margin: 24rpx 0;
+}
+.theme-option {
+  flex: 1;
+  min-height: 104rpx;
+  background: transparent;
+  color: var(--muted);
+  font-size: 34rpx;
+  font-weight: 500;
+  gap: 14rpx;
+}
+.theme-option.active {
+  background: var(--soft-blue);
+  color: var(--blue);
+}
+.theme-option text {
+  font-size: 44rpx;
+}
+.theme-dark .avatar {
+  background: var(--soft-blue);
+  color: var(--blue);
+}
+.theme-dark .delete {
+  color: #edb198;
+}

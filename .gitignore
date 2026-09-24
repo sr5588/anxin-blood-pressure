@@ -1,0 +1,8 @@
+node_modules/
+.build/
+project.private.config.json
+.env*
+!.env.example
+artifacts/
+cloudfunctions/api/node_modules/
+*.log

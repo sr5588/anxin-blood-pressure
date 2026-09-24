@@ -1,0 +1,51 @@
+<view class="page no-fab theme-{{theme}}">
+  <text class="eyebrow">安心记录，从容回顾</text>
+  <view class="title">让变化，有迹可循</view>
+  <view class="subtitle">解锁长期历史与分析，陪伴每一阶段</view>
+  <view class="card row">
+    <view>
+      <text class="small muted">当前状态</text>
+      <view class="section-title status">{{state}}</view>
+      <view wx:if="{{expires}}" class="small muted">有效至 {{expires}}（北京时间）</view>
+    </view>
+    <text class="access-symbol">⌁</text>
+  </view>
+  <view wx:if="{{mock}}" class="notice">开发演示模式 · 所有购买均为模拟，不会收取费用</view>
+  <view wx:if="{{trialEligible}}" class="card trial">
+    <view class="section-title status">🎁 一次7天完整体验</view>
+    <view class="muted small">
+      主动开始后计时7×24小时，每个账号仅一次。到期后所有数据继续保存。
+    </view>
+    <view class="spacer"></view>
+    <button class="secondary" bindtap="trial" disabled="{{busy}}">开始免费体验</button>
+  </view>
+  <view wx:for="{{products}}" wx:key="productId" class="card product">
+    <view class="row">
+      <text class="section-title status">{{item.displayName}}</text>
+      <text class="badge">{{item.entitlementType === 'lifetime' ? '一次解锁' : '365天'}}</text>
+    </view>
+    <view class="price">¥ {{item.price}}</view>
+    <view class="small muted">{{item.description}}</view>
+    <view class="spacer"></view>
+    <button
+      class="{{item.entitlementType === 'lifetime' ? 'primary' : 'secondary'}}"
+      bindtap="buy"
+      data-id="{{item.productId}}"
+      disabled="{{busy}}"
+    >
+      {{mock ? '模拟解锁' : '解锁'}}{{item.displayName}}
+    </button>
+  </view>
+  <view class="card">
+    <view class="section-title status">解锁后，可以回顾</view>
+    <view class="benefit">✓ 30天、90天、半年、1年及全部历史</view>
+    <view class="benefit">✓ 清晨与晚间的长期变化</view>
+    <view class="benefit">✓ 长期平均、统计与PDF医生报告</view>
+    <view class="divider"></view>
+    <view class="small muted">不自动续费。已有一年权益再次购买时，新增365天从原到期时间顺延。</view>
+  </view>
+  <view class="note">无论是否解锁，你的血压记录、云端备份和完整数据导出都不会受到影响。</view>
+  <button class="ghost" bindtap="restore">↻ 恢复权益</button>
+  <button class="ghost" bindtap="export">↓ 导出我的全部数据 · 永远免费</button>
+  <button wx:if="{{mock}}" class="ghost small" bindtap="refund">开发工具：模拟一笔订单退款</button>
+</view>

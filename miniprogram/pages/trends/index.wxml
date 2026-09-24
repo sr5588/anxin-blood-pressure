@@ -1,0 +1,103 @@
+<view class="page theme-{{theme}}">
+  <text class="eyebrow">留意变化，慢慢了解自己</text>
+  <view class="title">血压趋势</view>
+  <view class="segmented">
+    <button
+      wx:for="{{ranges}}"
+      wx:key="key"
+      class="segment {{range === item.key ? 'selected' : ''}}"
+      bindtap="chooseRange"
+      data-key="{{item.key}}"
+    >
+      {{item.label}}{{!premium && (item.key === '30' || item.key === 'all') ? ' 🔒' : ''}}
+    </button>
+  </view>
+  <view wx:if="{{premium}}" class="pills">
+    <button
+      wx:for="{{longRanges}}"
+      wx:key="key"
+      class="pill {{range === item.key ? 'selected' : ''}}"
+      bindtap="chooseRange"
+      data-key="{{item.key}}"
+    >
+      {{item.label}}
+    </button>
+  </view>
+  <view wx:if="{{locked}}" class="card locked">
+    <view class="abstract">
+      <view class="abstract-line one"></view>
+      <view class="abstract-line two"></view>
+    </view>
+    <view class="lock-icon">🔒</view>
+    <view class="section-title">长期血压回顾</view>
+    <view class="muted">
+      {{olderCount ? '更早还有 '+olderCount+' 组记录' : '让每一份记录，连成长期的变化'}}
+    </view>
+    <view class="reassure">你的数据一直都在</view>
+    <text class="small muted">解锁后可查看长期变化</text>
+    <button class="primary" bindtap="access">
+      {{trialEligible ? '了解一次7天完整体验' : '查看解锁方式'}}
+    </button>
+    <button class="ghost" bindtap="export">↓ 导出我的全部数据 · 免费</button>
+  </view>
+  <block wx:else>
+    <view class="pills">
+      <button
+        wx:for="{{periods}}"
+        wx:key="key"
+        class="pill {{period === item.key ? 'selected' : ''}}"
+        bindtap="choosePeriod"
+        data-key="{{item.key}}"
+      >
+        {{item.label}}
+      </button>
+    </view>
+    <view wx:if="{{offline}}" class="notice">离线查看本机记录，联网后自动更新</view>
+    <view class="card">
+      <view class="row">
+        <text>血压变化</text>
+        <text class="small muted">mmHg</text>
+      </view>
+      <view class="chart-legend">
+        <text class="coral">● 收缩压</text>
+        <text class="blue">● 舒张压</text>
+      </view>
+      <trend-chart wx:if="{{points.length}}" points="{{points}}" theme="{{theme}}" />
+      <view wx:else class="empty">
+        <view class="empty-icon">⌁</view>
+        <view>还没有这个时段的记录</view>
+        <view class="small">记录一次，就多了解自己一点</view>
+      </view>
+      <view class="small muted">
+        {{range === 'today' ? '每个点代表一次测量组平均值' :
+        '每天先计算各测量组平均，再按组等权平均'}}
+      </view>
+    </view>
+    <view wx:if="{{average}}" class="card">
+      <view class="muted">所选范围 · 平均血压</view>
+      <view class="trend-average">
+        <text class="coral">{{average.systolic}}</text>
+        /
+        <text class="blue">{{average.diastolic}}</text>
+        <text class="small muted">mmHg</text>
+      </view>
+      <text class="small muted">共{{average.count}}组记录，包含未完成复测组</text>
+    </view>
+    <view class="section-title">最近记录</view>
+    <view wx:for="{{rows}}" wx:key="sessionId" class="card record-row">
+      <view class="row">
+        <text class="small muted">{{item.label}}</text>
+        <text class="small muted">{{item.readings.length}}次测量</text>
+      </view>
+      <view class="row">
+        <text class="record-number">{{item.average.systolic}} / {{item.average.diastolic}}</text>
+        <text class="small muted">♡ {{item.average.pulse}}</text>
+      </view>
+    </view>
+    <button wx:if="{{rows.length}}" class="ghost" bindtap="records">
+      查看所选范围的全部记录 ›
+    </button>
+  </block>
+  <view class="footer">单次波动不代表疾病。趋势帮助回顾，诊断与用药请咨询医生。</view>
+  <record-button />
+</view>
